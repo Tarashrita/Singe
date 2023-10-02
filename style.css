@@ -14,6 +14,10 @@ body{
     font-size: 20px;
     margin-top: 5px;
 }
+.play_btn{
+    width: 130px;
+    font-size: 25px;
+}
 canvas{
     animation-name: border;
     animation-duration: 5s;
