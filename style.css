@@ -14,7 +14,7 @@ body{
     font-size: 20px;
     margin-top: 5px;
 }
-.play_btn{
+#play_btn{
     width: 130px;
     font-size: 25px;
 }
