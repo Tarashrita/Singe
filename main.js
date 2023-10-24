@@ -1,5 +1,7 @@
 song1="";
 song2="";
+ScoreLeftWrist=0;
+ScoreRightWrist=0;
 rightWristX=0;
 rightWristY=0;
 leftWristX=0;
@@ -25,6 +27,9 @@ function modelLoaded() {
 
 function gotPoses(results){
     if(results.length > 0){
+        ScoreLeftWrist=results[0].pose.keypoints[9].score;
+        console.log("ScoreLeftWrist = "+ScoreLeftWrist);
+
         console.log(results);
         rightWristX = results[0].pose.rightWrist.x;
         rightWristY = results[0].pose.rightWrist.y;
@@ -38,13 +43,30 @@ function gotPoses(results){
 
 function draw() {
     image(video,0,0,600,500);
+      fill("#FF000");
+    stroke("#FF000");
+  if(ScoreLeftWrist > 0.2) {
+    circle(leftWristX,leftWristY,20);
+    InNumberleftWristX=Number(leftWristX);
+    remove_decimal=floor(InNumberleftWristX);
+   
+    document.getElementById("song").innerHTML="Sound = "+sound;
+    song1.setSong("Harry_Potter_Theme_Song_Hedwigs_Theme.mp3");
+  }
+  if(ScoreRightWrist > 0.2) {
+    circle(leftWristX,leftWristY,20);
+    InNumberRightWristX=Number(rightWristX);
+    remove_decimal=floor(InNumberRightWristX);
+   
+    document.getElementById("song").innerHTML="Sound = "+song2;
+    song2.setSong("Peter Pan and the Pirates.mp3");
+  }
 }
 
 function play() {
    if(leftWristX > rightWristX) {
    song1.play();
-}
-if(rightWristX > leftWristX) {
+}else {
     song2.play()
 }
 song.setVolume(1);
